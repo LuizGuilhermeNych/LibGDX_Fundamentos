@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="10" tilewidth="64" tileheight="64" infinite="0" nextlayerid="5" nextobjectid="19">
+<map version="1.9" tiledversion="1.9.2" orientation="orthogonal" renderorder="right-down" width="40" height="10" tilewidth="64" tileheight="64" infinite="0" nextlayerid="8" nextobjectid="24">
  <tileset firstgid="1" name="debug_background" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="debug_background.png" width="64" height="64"/>
  </tileset>
  <tileset firstgid="2" name="debug_tile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="debug_tile.png" width="64" height="64"/>
+ </tileset>
+ <tileset firstgid="3" name="fr_id_0" tilewidth="64" tileheight="64" tilecount="1" columns="1">
+  <image source="fr_id_0.png" width="64" height="64"/>
  </tileset>
  <layer id="1" name="background" width="40" height="10">
   <data encoding="csv">
@@ -74,6 +77,7 @@
   <object id="16" x="640" y="256">
    <polygon points="0,0 0,64 192,64 192,0"/>
   </object>
+  <object id="22" name="player" x="128" y="320" width="64" height="64"/>
  </objectgroup>
  <objectgroup id="4" name="roomHandler">
   <object id="17" x="2496" y="256">

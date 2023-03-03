@@ -18,6 +18,7 @@ public class BodyHelperService {
 	
 	public static Body createBody(float x, float y, float width, float height, boolean isStatic, World world) {
 		BodyDef bodyDef = new BodyDef();
+		bodyDef.type = isStatic ? BodyDef.BodyType.StaticBody : BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(x / PPM, y / PPM);
 		bodyDef.fixedRotation = true;
 		

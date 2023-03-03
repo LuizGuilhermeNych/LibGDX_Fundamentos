@@ -16,6 +16,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 import helper.TileMapHelper;
+import objects.player.Player;
+
+import static helper.Constant.PPM;
 
 /**
  * @author luiz.vale
@@ -31,10 +34,12 @@ public class GameScreen extends ScreenAdapter{
 	private OrthogonalTiledMapRenderer orthogonalTiledMapRenderer;
 	private TileMapHelper tileMapHelper;
 	
+	private Player player;
+	
 	public GameScreen(OrthographicCamera camera) {
 		this.camera = camera;
 		this.batch = new SpriteBatch();
-		this.world = new World(new Vector2(0, 0), false);
+		this.world = new World(new Vector2(0, -9.81f), false);
 		this.box2DebugRenderer = new Box2DDebugRenderer();
 		
 		this.tileMapHelper = new TileMapHelper(this);
@@ -54,7 +59,10 @@ public class GameScreen extends ScreenAdapter{
 	}
 	
 	private void cameraUpdate() {
-		camera.position.set(new Vector3(0, 0, 0));
+		Vector3 position = camera.position;
+		position.x = Math.round(player.getBody().getPosition().x * PPM * 10) / 10f;
+		position.y = Math.round(player.getBody().getPosition().y * PPM * 10) / 10f;
+		camera.position.set(position);
 		camera.update();
 	}
 
@@ -78,6 +86,10 @@ public class GameScreen extends ScreenAdapter{
 	 */
 	public World getWorld() {
 		return world;
-	}	
+	}
+	
+	public void setPlayer(Player player) {
+		this.player = player;
+	}
 	
 }
