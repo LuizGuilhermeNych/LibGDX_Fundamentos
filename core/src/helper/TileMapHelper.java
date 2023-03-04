@@ -36,6 +36,7 @@ public class TileMapHelper {
 	public OrthogonalTiledMapRenderer setupMap() {
 		tiledMap = new TmxMapLoader().load("debug_map.tmx");
 		parseMapObjects(tiledMap.getLayers().get("platforms").getObjects());
+		parseMapObjects(tiledMap.getLayers().get("roomHandler").getObjects());
 		return new OrthogonalTiledMapRenderer(tiledMap);
 	}
 	
