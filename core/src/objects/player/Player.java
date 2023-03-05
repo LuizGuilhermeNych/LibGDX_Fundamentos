@@ -22,7 +22,6 @@ public class Player extends GameEntity{
 
 	private String estado;
 	private boolean canJump;
-	private TextureRegion playerTexture;
 	private Animation<TextureRegion> idle, walk, crouch, jump;
 	public float stateTimer;
 	
@@ -30,9 +29,13 @@ public class Player extends GameEntity{
 		super(width, height, body);
 		this.speed = 10f;
 		
-		TextureAtlas idleAtlas;
-		idleAtlas = new TextureAtlas(Gdx.files.internal("hunter/spr_idle.atlas"));
-		idle = new Animation(0.2f, idleAtlas.getRegions());
+//		TextureAtlas idleAtlas;
+//		idleAtlas = new TextureAtlas(Gdx.files.internal("spr_idle.atlas"));
+//		idle = new Animation(0.2f, idleAtlas.getRegions());
+//
+//		TextureAtlas walkAtlas;
+//		walkAtlas = new TextureAtlas(Gdx.files.internal("spr_walk.atlas"));
+//		walk = new Animation(0.2f, idleAtlas.getRegions());
 	}
 
 	@Override
@@ -81,7 +84,7 @@ public class Player extends GameEntity{
 		switch (estado) {
 		case "movendo":
 			//Sprite: movendo
-			
+//			region = walk.getKeyFrame(stateTimer, true);
 			break;
 		case "pulando":
 			//Sprite: pulando
@@ -92,8 +95,8 @@ public class Player extends GameEntity{
 		case "agachado":
 			//Sprite: agachado
 		default:
-			//Sprite: paradp
-			region = idle.getKeyFrame(stateTimer);
+			//Sprite: parado
+//			region = idle.getKeyFrame(stateTimer);
 			break;
 		}
 	}

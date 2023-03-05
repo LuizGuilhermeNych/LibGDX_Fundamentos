@@ -6,9 +6,6 @@
  <tileset firstgid="2" name="debug_tile" tilewidth="64" tileheight="64" tilecount="1" columns="1">
   <image source="debug_tile.png" width="64" height="64"/>
  </tileset>
- <tileset firstgid="3" name="fr_id_0" tilewidth="64" tileheight="64" tilecount="1" columns="1">
-  <image source="fr_id_0.png" width="64" height="64"/>
- </tileset>
  <layer id="1" name="background" width="40" height="10">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,

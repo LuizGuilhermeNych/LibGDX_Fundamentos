@@ -35,8 +35,11 @@ public class GameScreen extends ScreenAdapter{
 	private TileMapHelper tileMapHelper;
 	
 	private Player player;
+
+	private Boot parent;
 	
-	public GameScreen(OrthographicCamera camera) {
+	public GameScreen(OrthographicCamera camera, Boot boot) {
+		parent = boot;
 		this.camera = camera;
 		this.batch = new SpriteBatch();
 		this.world = new World(new Vector2(0, -25f), false);
