@@ -43,6 +43,7 @@ public class Boot extends Game{
 //		this.orthographicCamera = new OrthographicCamera();
 //		this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
 		loadingScreen = new LoadingScreen(this);
+		appPreferences = new AppPreferences();
 		setScreen(loadingScreen);
 //		setScreen(new GameScreen(orthographicCamera));
 	}
@@ -57,17 +58,13 @@ public class Boot extends Game{
 				this.setScreen(menuScreen);
 			break;
 			case PREFERENCES:
-				if (preferencesScreen == null) preferencesScreen = new PreferencesScreen(this);
+				if(preferencesScreen == null) preferencesScreen = new PreferencesScreen(this);
 				this.setScreen(preferencesScreen);
-			break;
+				break;
 			case APPLICATION:
 				if(mainScreen == null) mainScreen = new MainScreen(this);
 				this.setScreen(mainScreen);
 			break;
-			case CUSTOM:
-				if(customScreen == null) customScreen = new GameScreen(orthographicCamera, this);
-				this.setScreen(customScreen);
-				break;
 			case ENDGAME:
 				if(endScreen == null) endScreen = new EndScreen(this);
 				this.setScreen(endScreen);
