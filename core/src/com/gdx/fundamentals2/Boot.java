@@ -23,7 +23,7 @@ public class Boot extends Game{
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
 	private EndScreen endScreen;
-	private GameScreen customScreen;
+	private GameScreen gameScreen;
 	private AppPreferences appPreferences;
 
 	public final static int MENU = 0;
@@ -38,14 +38,9 @@ public class Boot extends Game{
 	
 	@Override
 	public void create() {
-//		this.widthScreen = Gdx.graphics.getWidth();
-//		this.heightScreen = Gdx.graphics.getHeight();
-//		this.orthographicCamera = new OrthographicCamera();
-//		this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
 		loadingScreen = new LoadingScreen(this);
 		appPreferences = new AppPreferences();
 		setScreen(loadingScreen);
-//		setScreen(new GameScreen(orthographicCamera));
 	}
 
 	public AppPreferences getPreferences(){
@@ -62,8 +57,12 @@ public class Boot extends Game{
 				this.setScreen(preferencesScreen);
 				break;
 			case APPLICATION:
-				if(mainScreen == null) mainScreen = new MainScreen(this);
-				this.setScreen(mainScreen);
+				this.widthScreen = Gdx.graphics.getWidth();
+				this.heightScreen = Gdx.graphics.getHeight();
+				this.orthographicCamera = new OrthographicCamera();
+				this.orthographicCamera.setToOrtho(false, widthScreen, heightScreen);
+				if(gameScreen == null) gameScreen = new GameScreen(orthographicCamera, this);
+				this.setScreen(gameScreen);
 			break;
 			case ENDGAME:
 				if(endScreen == null) endScreen = new EndScreen(this);

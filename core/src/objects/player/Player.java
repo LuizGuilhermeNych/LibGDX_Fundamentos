@@ -46,7 +46,7 @@ public class Player extends GameEntity{
 		inputHandler();
 		stateHandler();
 		spriteHandler();
-		System.out.println("LinearVeloc. Y : " + body.getLinearVelocity().y + " | " + "Estado : " + estado);
+//		System.out.println("LinearVeloc. Y : " + body.getLinearVelocity().y + " | " + "Estado : " + estado);
 	}
 
 	@Override

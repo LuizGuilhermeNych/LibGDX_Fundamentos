@@ -21,7 +21,7 @@ public class MenuScreen implements Screen {
         parent = boot;
 
         stage = new Stage(new ScreenViewport());
-        Gdx.input.setInputProcessor(stage);
+
     }
 
     /**
@@ -29,6 +29,7 @@ public class MenuScreen implements Screen {
      */
     @Override
     public void show() {
+        Gdx.input.setInputProcessor(stage);
         Table table = new Table();
         table.setFillParent(true);
         table.setDebug(true);
