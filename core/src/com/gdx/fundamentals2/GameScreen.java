@@ -88,9 +88,7 @@ public class GameScreen extends ScreenAdapter{
 
 	@Override
 	public void show() {
-		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-			hide();
-		}
+
 	}
 
 	/**

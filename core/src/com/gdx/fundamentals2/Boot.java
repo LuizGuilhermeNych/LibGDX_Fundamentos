@@ -22,6 +22,7 @@ public class Boot extends Game{
 	private PreferencesScreen preferencesScreen;
 	private MenuScreen menuScreen;
 	private MainScreen mainScreen;
+	private TestScreen testScreen;
 	private EndScreen endScreen;
 	private GameScreen gameScreen;
 	private AppPreferences appPreferences;
@@ -30,6 +31,7 @@ public class Boot extends Game{
 	public final static int PREFERENCES = 1;
 	public final static int APPLICATION = 2;
 	public final static int ENDGAME = 3;
+	public final static int TEST = 4;
 	public final static int CUSTOM = 4;
 	
 	public Boot() {
@@ -55,6 +57,10 @@ public class Boot extends Game{
 			case PREFERENCES:
 				if(preferencesScreen == null) preferencesScreen = new PreferencesScreen(this);
 				this.setScreen(preferencesScreen);
+				break;
+			case TEST:
+				if(testScreen == null) testScreen = new TestScreen(this);
+				this.setScreen(testScreen);
 				break;
 			case APPLICATION:
 				this.widthScreen = Gdx.graphics.getWidth();

@@ -54,7 +54,7 @@ public class Player extends GameEntity{
 	public void update() {
 		x = body.getPosition().x * PPM;
 		y = body.getPosition().y * PPM;
-		
+
 		inputHandler();
 		stateHandler();
 //		System.out.println("LinearVeloc. Y : " + body.getLinearVelocity().y + " | " + "Estado : " + estado);
@@ -67,7 +67,6 @@ public class Player extends GameEntity{
 		stateHandler();
 		setRegion(spriteHandler(Gdx.graphics.getDeltaTime()));
 		stateTimer += Gdx.graphics.getDeltaTime();
-		batch.draw(currentAnimation.getKeyFrame(stateTimer, true), body.getPosition().x, body.getPosition().y, width, height);
 
 		switch (currentState){
 			case IDLE:
@@ -76,6 +75,8 @@ public class Player extends GameEntity{
 			case WALKING:
 				setRegion(walk.getKeyFrame(stateTimer, true));
 		}
+		batch.begin();
+		batch.end();
 	}
 
 	public State stateHandler() {
