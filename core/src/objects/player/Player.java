@@ -22,22 +22,34 @@ public class Player extends GameEntity{
 
 	private String estado;
 	private boolean canJump;
-	private Animation<TextureRegion> idle, walk, crouch, jump;
+	private enum State {IDLE, WALKING, JUMPING, FALLING, CROUCHING};
+	public State currentState;
+	public State previousState;
+	public boolean walkingRight;
+	private Animation<TextureRegion> idle;
+	private Animation<TextureRegion> walk;
+	private Animation<TextureRegion> currentAnimation;
 	public float stateTimer;
 	
 	public Player(float width, float height, Body body) {
 		super(width, height, body);
 		this.speed = 10f;
-		
-//		TextureAtlas idleAtlas;
-//		idleAtlas = new TextureAtlas(Gdx.files.internal("spr_idle.atlas"));
-//		idle = new Animation(0.2f, idleAtlas.getRegions());
-//
-//		TextureAtlas walkAtlas;
-//		walkAtlas = new TextureAtlas(Gdx.files.internal("spr_walk.atlas"));
-//		walk = new Animation(0.2f, idleAtlas.getRegions());
-	}
 
+		currentState = State.IDLE;
+		previousState = State.IDLE;
+		walkingRight = true;
+		stateTimer = 0;
+		
+		TextureAtlas idleAtlas;
+		idleAtlas = new TextureAtlas(Gdx.files.internal("hunter/spr_idle.atlas"));
+		idle = new Animation(0.2f, idleAtlas.getRegions());
+
+		TextureAtlas walkAtlas;
+		walkAtlas = new TextureAtlas(Gdx.files.internal("hunter/spr_walk.atlas"));
+		walk = new Animation(0.2f, idleAtlas.getRegions());
+
+		currentAnimation = idle;
+	}
 	@Override
 	public void update() {
 		x = body.getPosition().x * PPM;
@@ -45,60 +57,79 @@ public class Player extends GameEntity{
 		
 		inputHandler();
 		stateHandler();
-		spriteHandler();
 //		System.out.println("LinearVeloc. Y : " + body.getLinearVelocity().y + " | " + "Estado : " + estado);
 	}
 
 	@Override
 	public void render(SpriteBatch batch) {
 		// TODO Auto-generated method stub
-		
+
+		stateHandler();
+		setRegion(spriteHandler(Gdx.graphics.getDeltaTime()));
+		stateTimer += Gdx.graphics.getDeltaTime();
+		batch.draw(currentAnimation.getKeyFrame(stateTimer, true), body.getPosition().x, body.getPosition().y, width, height);
+
+		switch (currentState){
+			case IDLE:
+				setRegion(idle.getKeyFrame(stateTimer));
+				break;
+			case WALKING:
+				setRegion(walk.getKeyFrame(stateTimer, true));
+		}
 	}
 
-	private void stateHandler() {
+	public State stateHandler() {
 		if(body.getLinearVelocity().x == 0) {
+			currentState = State.IDLE;
 			estado = "parado";
 			canJump = true;
 		}
 		if(body.getLinearVelocity().x != 0) {
+			currentState = State.WALKING;
 			estado = "movendo";
 			canJump = true;
 		}
 		if(body.getLinearVelocity().y > 0) {
+			currentState = State.JUMPING;
 			estado = "pulando";
 			canJump = false;
 		}
 		if(body.getLinearVelocity().y < 0) {
+			currentState = State.FALLING;
 			estado = "caindo";
 			canJump = false;
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) {
+			currentState = State.CROUCHING;
 			estado = "agachado";
 		}
-		
+		return currentState;
 	}
 	
-	private void spriteHandler() {
-		
-		TextureRegion region;
-		switch (estado) {
-		case "movendo":
+	public TextureRegion spriteHandler(float dt) {
+
+		currentState = stateHandler();
+		TextureRegion region = null;
+
+		switch (currentState) {
+		case WALKING:
 			//Sprite: movendo
-//			region = walk.getKeyFrame(stateTimer, true);
+			region = walk.getKeyFrame(stateTimer, true);
 			break;
-		case "pulando":
+		case JUMPING:
 			//Sprite: pulando
 			break;
-		case "caindo":
+		case FALLING:
 			//Sprite: caindo
 			break;
-		case "agachado":
+		case CROUCHING:
 			//Sprite: agachado
 		default:
 			//Sprite: parado
-//			region = idle.getKeyFrame(stateTimer);
+			region = idle.getKeyFrame(stateTimer, true);
 			break;
 		}
+		return region;
 	}
 	
 	private void inputHandler() {

@@ -56,10 +56,6 @@ public class GameScreen extends ScreenAdapter{
 		batch.setProjectionMatrix(camera.combined);
 		orthogonalTiledMapRenderer.setView(camera);
 		player.update();
-		
-		if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
-			Gdx.app.exit();
-		}
 	}
 	
 	private void cameraUpdate() {
@@ -83,6 +79,18 @@ public class GameScreen extends ScreenAdapter{
 		
 		batch.end();
 		box2DebugRenderer.render(world, camera.combined.scl(32.0f));
+	}
+
+	@Override
+	public void hide() {
+		super.hide();
+	}
+
+	@Override
+	public void show() {
+		if(Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+			hide();
+		}
 	}
 
 	/**

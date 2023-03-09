@@ -3,6 +3,7 @@
  */
 package objects.player;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 
@@ -10,7 +11,7 @@ import com.badlogic.gdx.physics.box2d.Body;
  * @author luiz.vale
  *
  */
-public abstract class GameEntity {
+public abstract class GameEntity extends Sprite {
 	
 	protected float x, y, velX, velY, speed;
 	protected float width, height;
