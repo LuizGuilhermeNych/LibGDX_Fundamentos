@@ -76,7 +76,7 @@ public class GameScreen extends ScreenAdapter{
 		orthogonalTiledMapRenderer.render();
 		
 		batch.begin();
-		
+		player.render(batch);
 		batch.end();
 		box2DebugRenderer.render(world, camera.combined.scl(32.0f));
 	}

@@ -62,12 +62,8 @@ public class Player extends GameEntity{
 
 	@Override
 	public void render(SpriteBatch batch) {
-		// TODO Auto-generated method stub
-
-		stateHandler();
-		setRegion(spriteHandler(Gdx.graphics.getDeltaTime()));
 		stateTimer += Gdx.graphics.getDeltaTime();
-
+		
 		switch (currentState){
 			case IDLE:
 				setRegion(idle.getKeyFrame(stateTimer));
@@ -75,8 +71,6 @@ public class Player extends GameEntity{
 			case WALKING:
 				setRegion(walk.getKeyFrame(stateTimer, true));
 		}
-		batch.begin();
-		batch.end();
 	}
 
 	public State stateHandler() {

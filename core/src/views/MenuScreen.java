@@ -50,7 +50,7 @@ public class MenuScreen implements Screen {
         newGame.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                parent.changeScreen(Boot.TEST);
+                parent.changeScreen(Boot.APPLICATION);
             }
         });
 
