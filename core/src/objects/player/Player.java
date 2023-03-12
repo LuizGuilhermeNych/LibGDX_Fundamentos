@@ -5,6 +5,7 @@ package objects.player;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -22,6 +23,9 @@ public class Player extends GameEntity{
 
 	private String estado;
 	private boolean canJump;
+
+	private Texture tex;
+
 	private enum State {IDLE, WALKING, JUMPING, FALLING, CROUCHING};
 	public State currentState;
 	public State previousState;
@@ -39,6 +43,8 @@ public class Player extends GameEntity{
 		previousState = State.IDLE;
 		walkingRight = true;
 		stateTimer = 0;
+
+		tex = new Texture("fr_id_0.png");
 		
 		TextureAtlas idleAtlas;
 		idleAtlas = new TextureAtlas(Gdx.files.internal("hunter/spr_idle.atlas"));
@@ -62,15 +68,16 @@ public class Player extends GameEntity{
 
 	@Override
 	public void render(SpriteBatch batch) {
-		stateTimer += Gdx.graphics.getDeltaTime();
-		
-		switch (currentState){
-			case IDLE:
-				setRegion(idle.getKeyFrame(stateTimer));
-				break;
-			case WALKING:
-				setRegion(walk.getKeyFrame(stateTimer, true));
-		}
+//		stateTimer += Gdx.graphics.getDeltaTime();
+//
+//		switch (currentState){
+//			case IDLE:
+//				setRegion(idle.getKeyFrame(stateTimer));
+//				break;
+//			case WALKING:
+//				setRegion(walk.getKeyFrame(stateTimer, true));
+//		}
+		batch.draw(tex, body.getPosition().x * PPM - (tex.getWidth() / 2), body.getPosition().y * PPM - (tex.getHeight() / 2) - 10);
 	}
 
 	public State stateHandler() {

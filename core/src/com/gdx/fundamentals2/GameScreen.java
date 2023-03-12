@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
@@ -101,5 +102,10 @@ public class GameScreen extends ScreenAdapter{
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
-	
+
+	@Override
+	public void dispose() {
+		batch.dispose();
+		super.dispose();
+	}
 }
